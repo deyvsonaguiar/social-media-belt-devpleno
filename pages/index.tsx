@@ -1,22 +1,15 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import Seo from '@/components/seo'
+import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Social Media Belt - DevPleno</title>
-        <meta name="description" content="Tutorial Saas do Zero" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <div>
-          <h1 className='font-bold text-2xl'>Get started by editing</h1>
-        </div>
-      </main>
-    </>
+    <div>
+      <Seo />
+      <ul>
+        <li><Link href='/app'>App</Link></li>
+        <li><Link href='/devpleno'>Tenant devpleno</Link></li>
+      </ul>
+    </div>
   )
 }
