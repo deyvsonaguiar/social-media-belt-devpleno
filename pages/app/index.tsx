@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
+import Headling1 from './../../components/Headling1';
+import Headling2 from './../../components/Headling2';
 const AppHome = () => (
   <>
-    <h1 className="text-4xl font-semibold text-gray-800 dark:text-white">
-      Good afternoom, Charlie
-    </h1>
-    <h2 className="text-gray-400 text-md">
-      Here's what's happening with your ambassador account today.
-    </h2>
+    {/**TODO - Headling1 */}
+    <Headling1>Bem-vindo</Headling1>
+    <Headling2>Gerenciador de links</Headling2>
     <div className="flex flex-col items-center w-full my-6 space-y-4 md:space-x-4 md:space-y-0 md:flex-row">
       <div className="w-full md:w-6/12">
         <div className="relative w-full overflow-hidden bg-white shadow-lg dark:bg-gray-700">
