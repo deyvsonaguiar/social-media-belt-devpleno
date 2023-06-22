@@ -30,7 +30,6 @@ const Links = () => {
 
   return (
     <>
-      <pre>{errors.name?.message}</pre>
       <div className="grid grird-cols-1 grid-cols-2">
         <div>
           <Headling1>Gerenciador de links</Headling1>

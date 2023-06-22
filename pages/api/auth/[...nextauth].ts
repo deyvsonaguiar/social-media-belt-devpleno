@@ -12,13 +12,32 @@ export default NextAuth({
       scope: 'read:user',
     })
   ],
-  /*
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      return url.startsWith(baseUrl)
-        ? url
-        : baseUrl
+    session({ session, token, user }) {
+      return session
+    },
+    //async redirect({ url, baseUrl }) { { return baseUrl } },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (isNewUser) {
+        const accounts = await prisma.tenant.findFirst({
+          where: {
+            userId: user.id
+          }
+        })
+        if (!accounts) {
+          await prisma.tenant.create({
+            data: {
+              name: 'Meu tenant',
+              slug: 'meutenant',
+              plan: 'free',
+              userId: user.id,
+              image: '',
+            }
+          })
+        }
+        return token
+      }
     }
-  }
-  * */
+  },
+  debug: false
 });

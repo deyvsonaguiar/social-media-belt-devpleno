@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import Headling1 from './../../components/Headling1';
-import Headling2 from './../../components/Headling2';
+import Headling1 from '../../../components/Headling1';
+import Headling2 from '../../../components/Headling2';
 const AppHome = () => (
   <>
     {/**TODO - Headling1 */}
