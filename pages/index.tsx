@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
 
-export default function Home() {
+export default function Home(props) {
   const { data: session } = useSession()
 
   return (
@@ -17,10 +17,8 @@ export default function Home() {
         <button onClick={() => signIn()}>Sign in</button>
       </p>
       <p>
-        <>
-          Signed in as {session?.user?.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
+        Signed in as {session?.user?.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
       </p>
     </div>
   )
