@@ -19,25 +19,43 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   callbacks: {
-    async jwt({ token, user, account, profile, isNewUser }) {
-      console.log({ user, isNewUser, token })
+    async signIn({ user, account, profile, email, credentials }) {
+      return true
+    },
+    async session({ session, token, user }) {
+      session.user.id = token.sub
+      console.log('session', { session, token, user })
+      return session
+    },
+    async jwt({ token, user, isNewUser }) {
       if (isNewUser) {
-        //TODO- create a new tenant
         const accounts = await prisma.tenant.findFirst({
           where: {
-            userId: user.id
+            users: {
+              some: {
+                userId: user.i
+              }
+            }
           }
         })
         if (!accounts) {
-          await prisma.tenant.create({
+          const tenant = await prisma.tenant.create({
             data: {
               name: 'Meu tenant',
-              userId: user.id,
               image: '',
               slug: 'meutenant',
               plan: 'free'
             }
           })
+          if (!accounts) {
+            const userOnTenant = await prisma.usersOnTenants.create({
+              data: {
+                userId: user.id,
+                tenantId: tenant.id,
+                role: 'owner'
+              }
+            })
+          }
         }
       }
       return token
