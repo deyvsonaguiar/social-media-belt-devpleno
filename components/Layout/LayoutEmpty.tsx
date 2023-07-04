@@ -8,7 +8,6 @@ interface Props {
 const LayoutEmpty = ({ children }: Props) => {
   return (
     <>
-      <h1>Empty Layout</h1>
       {children}
     </>
   )

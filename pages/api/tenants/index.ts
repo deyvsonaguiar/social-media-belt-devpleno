@@ -14,7 +14,7 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse<TenantData>
 ) => {
-  const session = await getSession({ req, authOptions })
+  const session = await getSession({ req })
 
   if (session) {
     const tenants = await prisma.tenant.findMany({
@@ -26,7 +26,7 @@ export default async (
         }
       }
     })
-    res.send({ tenants })
+    res.send(tenants)
   } else {
     res.send([])
   }

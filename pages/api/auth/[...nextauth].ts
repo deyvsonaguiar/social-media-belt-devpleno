@@ -24,7 +24,6 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token, user }) {
       session.user.id = token.sub
-      console.log('session', { session, token, user })
       return session
     },
     async jwt({ token, user, isNewUser }) {
@@ -33,11 +32,12 @@ export const authOptions: NextAuthOptions = {
           where: {
             users: {
               some: {
-                userId: user.i
+                userId: user.id
               }
             }
           }
         })
+
         if (!accounts) {
           const tenant = await prisma.tenant.create({
             data: {
