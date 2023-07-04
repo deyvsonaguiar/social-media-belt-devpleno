@@ -1,6 +1,7 @@
 import LayoutApp from '@/components/Layout/LayoutApp'
 import LayoutPublic from '@/components/Layout/LayoutPublic'
 import LayoutTenant from '@/components/Layout/LayoutTenant'
+import LayoutEmpty from '@/components/Layout/LayoutEmpty'
 import '@/styles/globals.css'
 import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
@@ -20,6 +21,9 @@ export default function App({
   }
   if (pathname.indexOf('/[slug]') === 0) {
     Layout = LayoutTenant
+  }
+  if (pathname === '/app') {
+    Layout = LayoutEmpty
   }
 
   return (
